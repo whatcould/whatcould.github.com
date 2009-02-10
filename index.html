@@ -1,0 +1,16 @@
+---
+layout: default
+title: Whatcould Code
+---
+<div id="intro">
+<p>Some bits of code, stuff I tinkered with and might be helpful.</p>
+</div>
+
+  <h1>posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &rarr; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  

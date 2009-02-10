@@ -1,0 +1,106 @@
+
+body {
+font-size: 62.5%;
+color: #333;
+text-align: center;
+font-family: "Helvetica Neue", "HelveticaNeue", helvetica, tahoma, verdana, sans-serif;
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+div, ul, li, p,
+h1,h2,h3,h4,
+ol, ul, td  {
+font-family: "Helvetica Neue", "HelveticaNeue", helvetica, tahoma, verdana, sans-serif;
+padding: 0;
+margin: 0;
+text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+font-size: 100%;
+}
+p {
+margin: 1em 0;
+}
+/* General 
+=============== */
+
+.access {display: none;}
+.clr {clear: both;}
+li {list-style-type: none;}
+img {border: none;}
+a {color: #009;}
+table {font-size: inherit;font: 100%;}
+
+/* Page layout 
+=============== */
+
+#header,
+#content,
+#footer {
+font-size: 1.3em;
+text-align: justify;
+width: 40em;
+line-height: 1.5em;
+margin: 0 auto;
+}
+
+#content {
+margin: 3em auto 2em auto;
+}
+
+/* header 
+========== */
+
+#header {
+margin: 2em auto 4em;
+letter-spacing:-.02em;
+}
+#header a {
+text-decoration: none;
+font-size: 2em;
+color: #22BBFF;
+}
+
+#super_head {
+height: 2.5em;
+background-color: #666;
+margin-bottom: 1em;
+border-bottom: 1px solid #aaa;
+}
+/* Content
+=========== */
+
+h1 {
+font-size: 1.5em;
+margin: 1.5em 0 .5em;
+}
+
+
+/* post
+=========== */
+
+#post .meta {
+color: #999;
+}
+#post ol,
+#post ul {
+margin-left: 1.5em;
+}
+#post ol li {
+list-style-type: roman;
+}
+#post ul li {
+list-style-type: disc;
+}
+#post li {
+margin-top: .5em;
+}
+
+/* footer
+=========== */
+
+#footer {
+margin-top: 4em;
+}

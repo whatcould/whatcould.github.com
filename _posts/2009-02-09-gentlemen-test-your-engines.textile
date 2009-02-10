@@ -1,0 +1,28 @@
+---
+layout: post
+title: Gentlemen, Test Your Engines
+---
+
+h1. {{ page.title }}
+
+p(meta). 9 Feb 2009
+
+In my rails application, I've got an engine. I built it myself. It's more than just a plugin, some external library that I trust will plug along by itself: It's an integral part of my app. It's got controllers and models, and even routes. It's a first class citizen.
+
+When I develop my rails app, I run autotest. It runs my tests automatically when I change code, beeps at me angrily when I break something, and plays a soothing noise when all my tests pass.
+
+So that's all great. Except autotest wouldn't run the tests I've included in my engine plugin. I had to do all that separately, even though I often work on the app and plugin together, as a unit. So I spent a couple hours and fixed that.
+
+h3. Briefly,
+
+I made very minor modifications to engines code and autotest, so until (?) those changes get pulled into the main streams, (unless?) you'll have to use my forks of those two libraries.
+* "Autotest/Zentest":http://github.com/whatcould/zentest/tree/master -- this is released as a gem; I was able to use my version just by copying the lib/ directory from my fork right into my ruby/gems directory. I'm not sure what's the accepted method of patching gems. ("Coral":http://github.com/mislav/coral/tree/master can't get here fast enough.)
+* "Engines plugin":http://github.com/whatcould/engines/tree/master .  This just patches the copy-fixtures-to-temporary-directory behavior; if you don't have fixtures in your engines, you don't need these changes to the Engines plugin.
+
+After you've got those libraries in place, you just need this "custom .autotest":http://gist.github.com/61104. Put it in your rails root.
+* The custom autotest adds hooks to run tests for all plugins with app/ directories in your vendor/plugins. It detects changes in your plugins/yourengine/app/ code, as well as in your plugin tests, and runs tests appropriately.
+* It also auto-copies changed fixtures into a temporary directory, combining fixtures from your engines with fixtures from your app -- you still need to do a @rake test:plugins:setup_plugin_fixtures@ to prime the pump, and include the @Engines::Testing.set_fixture_path@ line in your test_helper. It's not 100% smart yet -- if you're overriding some engine fixtures with new ones in your app directory, you might run into some issues. 
+
+Ok, that's it: just run autotest in your rails root, and your engines tests should be first class citizens. Depending on your project, you might need to tweak the autotest hooks. Adding more .autotest exceptions will make autotest faster (and not eat up your CPU) -- I've included enough examples that it should be easy to figure out what's going on.
+
+Please contact me with changes or comments -- my email's below, or ping me with github magic.
