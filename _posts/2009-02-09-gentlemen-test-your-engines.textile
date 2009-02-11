@@ -7,7 +7,7 @@ h1. {{ page.title }}
 
 p(meta). 9 Feb 2009
 
-In my rails application, I've got an engine. I built it myself. It's more than just a regular plugin, some external library that I trust will plug along by itself: it's an integral part of my app. It's got controllers and models, and even routes. It's a first class citizen.
+In my rails application, I've got an engine. I built it myself. It's more than just a regular plugin, some external library that I trust will plug along by itself: it's an integral part of my app. It's got controllers and models, and even routes. It's a first-class citizen.
 
 When I develop my rails app, I run "autotest":http://zentest.rubyforge.org/ZenTest/. It runs my tests automatically when I change code, beeps at me angrily when I break something, and plays a soothing noise when all my tests pass.
 
@@ -29,4 +29,4 @@ After you've got those libraries in place, you just need this "custom .autotest"
 
 Ok, that's it: just run autotest in your rails root, and your engines tests should be first class citizens. Depending on your project, you might need to tweak the autotest hooks. Adding more .autotest exceptions will make autotest faster (and not eat up your CPU) -- I've included enough examples that it should be easy to figure out what's going on.
 
-Please contact me with changes or comments -- my email's below, or ping me with github magic.
+Please contact me with changes or comments -- just ping me with github magic, or contact me through one of the sites below.

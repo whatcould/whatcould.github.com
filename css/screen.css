@@ -58,11 +58,15 @@ margin: 2em auto 4em;
 letter-spacing:-.02em;
 }
 #header a {
+margin-left: -3px;
 text-decoration: none;
 font-size: 2em;
 color: #22BBFF;
+padding: 3px;
 }
-
+#header a:hover {
+background-color: #e2f6ff;
+}
 #super_head {
 height: 2.5em;
 background-color: #666;
