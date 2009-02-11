@@ -76,7 +76,10 @@ h1 {
 font-size: 1.5em;
 margin: 1.5em 0 .5em;
 }
-
+h2 {
+margin: 1.5em 0 .5em;
+font-size: 1.2em;
+}
 #intro {
 padding: .5em;
 background-color: #e2f6ff;
@@ -92,22 +95,26 @@ font-size: 1.4em;
 =========== */
 
 #post .meta {
+margin-top: 0;
 color: #999;
 }
 #post ol,
 #post ul {
-margin-left: 1.5em;
-}
-#post ol li {
-list-style-type: roman;
-}
-#post ul li {
-list-style-type: disc;
-}
-#post li {
-margin-top: .5em;
+margin-left: 2.5em;
 }
 
+#content ol li {
+list-style-type: decimal;
+}
+#content ul li {
+list-style-type: disc;
+}
+#content li {
+margin-top: .5em;
+}
+ol.quick li {
+margin-top: .1em!important;
+}
 /* footer
 =========== */
 
