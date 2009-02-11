@@ -103,13 +103,13 @@ color: #999;
 margin-left: 2.5em;
 }
 
-#content ol li {
+#post ol li {
 list-style-type: decimal;
 }
-#content ul li {
+#post ul li {
 list-style-type: disc;
 }
-#content li {
+#post li {
 margin-top: .5em;
 }
 ol.quick li {
