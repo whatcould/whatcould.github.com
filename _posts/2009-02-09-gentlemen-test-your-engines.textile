@@ -19,7 +19,7 @@ h2. Briefly,
 # Put an updated .autotest in your rails root
 # Run autotest
 
-I made minor modifications to autotest, so until (unless?) those changes get pulled into the main streams, *you'll have to use my fork* that code (or pull in my last commits to your own forks). You also may need an updated version of the Engines plugin (see below).
+I made minor modifications to autotest, so until (unless?) those changes get pulled into the main streams, *you'll have to use my autotest fork*  (or pull in my last commits to your own forks). You also may need an updated version of the Engines plugin (see below).
 * "Autotest/Zentest":http://github.com/whatcould/zentest/tree/master -- this is released as a gem; I was able to use my version just by copying the lib/ directory from my fork right into my ruby/gems/zentest directory. I'm not sure what's the accepted method of patching gems on your system, but I'm pretty sure that's not it. ("Coral":http://github.com/mislav/coral/tree/master can't get here fast enough.)
 * "Engines plugin":http://github.com/lazyatom/engines/tree/master  You need a recent (after Feb 11) version of the engines plugin. This just patches the copy-fixtures-to-temporary-directory behavior; if you don't have fixtures in your engines, you don't need these changes.
 
@@ -30,3 +30,23 @@ After you've got those libraries in place, you just need this "custom .autotest"
 Ok, that's it: just run autotest in your rails root, and your engines tests should be first class citizens. Depending on your project, you might need to tweak the autotest hooks. Adding more .autotest exceptions will make autotest faster (and not eat up your CPU) -- I've included enough examples that it should be easy to figure out what's going on.
 
 Please contact me with changes or comments -- just ping me with github magic, or contact me through one of the sites below.
+
+
+h2. Addendum: Engine plugin testing general hints
+
+There are a couple things that tripped me up when setting up my Engines tests.
+
+h3. test_helpers
+
+I've got a test_helper.rb under @vendor/plugins/my_engine/test/test_helper.rb@ , where I can add helper methods specific to testing my Engine. From there, I require my main test_helper: @require File.expand_path(File.dirname(__FILE__) + '/../../../../test/test_helper')@, so I get all the other setup (user login methods, fixtures, etc) I need for my tests.
+
+This way, both your Engine and your main Rails tests have the same require line: @require File.dirname(__FILE__) + '/../test_helper'@.  I find myself generating scaffolds/models and their associated tests in my main Rails application, and then moving controllers and tests between the main app and the Engine.
+
+h3. Fixtures
+
+You can put fixtures under yourplugin/test/fixtures/. Unfortunately, they'll just sit there and look pretty until you:
+
+#(quick) Add @Engines::Testing.set_fixture_path@ to your test_helper.rb, and
+# Run @rake test:plugins:setup_plugin_fixtures@ when you create or update your fixtures.
+
+This way, fixtures from your main application, together with all your Engine plugin fixtures, are copied to a temporary folder and used for your tests.
