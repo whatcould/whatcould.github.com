@@ -11,13 +11,13 @@ In my rails application, I've got an engine. I built it myself. It's more than j
 
 When I develop my rails app, I run "autotest":http://zentest.rubyforge.org/ZenTest/. It runs my tests automatically when I change code, beeps at me angrily when I break something, and plays a soothing noise when all my tests pass.
 
-So that's all great. Except autotest wouldn't run the tests I've included in my engine plugin. I had to do all that separately, even though I often work on the app and plugin together, as a unit. So I spent a couple hours and fixed that.
+So that's all great. Except *autotest wouldn't run the tests I've included in my engine plugin*. I had to do all that separately, even though I often work on the app and plugin together, as a unit. So I spent a couple hours and fixed that.
 
-h2. Briefly,
+h2. Briefly, to get autotest to test your Engines too:
 
 #(quick) Update autotest and the Engines plugin
-# Put an updated .autotest in your rails root
-# Run autotest
+# Put an updated .autotest file in your Rails root
+# Run @autotest@ in your Rails root
 
 I made minor modifications to autotest, so until (unless?) those changes get pulled into the main streams, *you'll have to use "my autotest fork":http://github.com/whatcould/zentest/tree/master*  (or pull in my last commits to your own forks). You also may need an updated version of the Engines plugin (see below).
 * "Autotest/Zentest":http://github.com/whatcould/zentest/tree/master -- this is released as a gem; I was able to use my version just by copying the lib/ directory from my fork right into my ruby/gems/zentest directory. I'm not sure what's the accepted method of patching gems on your system, but I'm pretty sure that's not it. ("Coral":http://github.com/mislav/coral/tree/master can't get here fast enough.)
