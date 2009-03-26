@@ -27,7 +27,7 @@ Only problem (besides IE compatability, I suppose) was that you put the map in F
 
 Here's the map, without any county fill colors:
 
-<object id="wisc" name="wisc" data="/images/wisconsin_basic.svg" type="image/svg+xml" width="320px" height="320px">
+<object id="wisc" name="wisc" data="/images/wisconsin.svg" type="image/svg+xml" width="320px" height="320px">
 </object>
 
 If you're on Firefox... it looks fine, right? And I could attach click effects to the counties, which would be helpful. But: the counties should have hover effects, but they seem to be barely working. And try to scroll the page in Firefox. Oh, and it doesn't work in *Safari*. Or Internet Explorer, which is less of an issue for me -- I was already planning to serve "those people" alternate content.
