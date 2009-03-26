@@ -77,12 +77,16 @@ border-bottom: 1px solid #aaa;
 =========== */
 
 h1 {
-font-size: 1.5em;
+font-size: 1.6em;
 margin: 1.5em 0 .5em;
 }
 h2 {
 margin: 1.5em 0 .5em;
-font-size: 1.2em;
+font-size: 1.4em;
+}
+h3 {
+margin: 1.5em 0 .5em;
+font-size: 1.1em;
 }
 #intro {
 padding: .5em;
