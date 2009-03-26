@@ -1,0 +1,56 @@
+---
+layout: post
+title: SVG on my new site. (Kinda.)
+---
+
+h1. {{ page.title }}
+
+p(meta). 25 March 2009
+
+I've been stiching together the pieces of a "site redux":http://wisconsinbutterflies.org -- from PHP in 2005, to Rails in 2009. Of course I'm not just switching frameworks for the hell of it; I'm adding features in the rewrite.
+
+Anyway, the site includes a state map that shows dynamically updated information by county. The old maps were pretty ugly, so I thought I'd give SVG a stab. (I'd rather not use Flash, for various ideological reasons.)
+
+h2. Brief rundown of what I learned
+
+* A detailed SVG state map makes "Firefox run like molasses":#firefox (see below)
+* Imagemagick will turn your SVG files into PNG bitmaps... "badly":#imagemagick.
+* "librsvg":http://librsvg.sourceforge.net/, which comes with a command-line tool (rsvg), is "what you really want":#librsvg.
+
+h2. The details
+
+h3(#firefox). Firefox does SVG, but not happily
+
+The maps on the site display location information for insect species, by county -- each county can be filled with one of a number of colors. The old maps were GIF files, and had to be bitmap-filled with GD in PHP (think _paint bucket_). Old school, right? So I got an SVG version of the map, and after a little bit I was filling in the counties with a touch of javascript. I reference the SVG file in an object tag, so I can cache the blank file in the browser and just color
+
+Only problem (besides IE compatability, I suppose) was that you put the map in Firefox and it slows the scrolling down to a crawl, and the lightbox-style image zoom I had on the page became comically slow.
+
+Here's the map, without any county fill colors:
+
+<object id="wisc" name="wisc" data="/images/wisconsin_basic.svg" type="image/svg+xml" width="320px" height="320px">
+</object>
+
+If you're on Firefox... it looks fine, right? And I could attach click effects to the counties, which would be helpful. But: the counties should have hover effects, but they seem to be barely working. And try to scroll the page in Firefox. Oh, and it doesn't work in *Safari*. Or Internet Explorer, which is less of an issue for me -- I was already planning to serve "those people" alternate content.
+
+h3(#imagemagick). Imagemagick makes ugly PNGs from SVG
+
+Plan B. Since I'd already figured out how to edit the SVG files dynamically, I went about creating bitmap copies on demand, on the server. With "Hpricot":http://wiki.github.com/why/hpricot, I can add fill colors to the SVG XML file, and then I just needed an SVG rasterizer.
+
+Imagemagick can do it, and it was already installed on my server. But its interpretation left a lot to be desired -- the scale is off, and for some reason some of the paths are very thick:
+
+<code>convert -resize 274x300 species_15.svg species_15_imagemagick.png</code>
+<p><img src="/images/species_15_imagemagick.png" /></p>
+
+h3(#librsvg). Librsvg for fun and profit
+
+Turns out "librsvg":http://librsvg.sourceforge.net/ is much more adept, at least at my particular SVG image. After a bit of hair-pulling, I managed to get it compiled. (You need GTK+, but not the whole X11/XFree86 setup.) Initially I worried about finding Ruby bindings, but it turns out it comes with a command-line tool.
+
+<code>rsvg --width=274 --height=300 original.svg bitmap.png</code>
+
+<p><img src="/images/wi-locations-clouded-sulphur.png" /></p>
+
+Much better, right? Still would like to make the map interactive -- to be able to click on the county. Pretty depressing that in 2009, there is no good way to do that with free tools.
+
+If you're interested, here's the "page on the new site":http://wisconsinbutterflies.org/butterfly/species/15-clouded-sulphur with the image in context.
+
+
