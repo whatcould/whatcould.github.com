@@ -16,7 +16,7 @@ If you don't know what these two things are or why you'd want them to work toget
 
 h2. Growl notifier for remote Integrity server
 
-I wanted to use a Growl notifier, so when I did a "git push" I didn't have to reload the integrity page to see if I'd broken something. David Calavera has a nice little "growl notifier":http://github.com/calavera/integrity-growl, but it assumes your Integrity server is on the same network as your local box. I wasn't excited about figuring out how to poke a hole in my firewall just for Growl, and I'm often working remotely.
+I wanted to use a Growl notifier, so when I did a "git push" I didn't have to reload the integrity page to see if I'd broken something. "David Calavera":http://thinkincode.net has a nice little "growl notifier":http://github.com/calavera/integrity-growl, but it assumes your Integrity server is on the same network as your local box. I wasn't excited about figuring out how to poke a hole in my firewall just for Growl, and I'm often working remotely.
 
 So I hacked up a little script to pro-actively ping my Integrity server every time I push to my origin/master. 
 
@@ -32,6 +32,6 @@ Here's the script: "http://gist.github.com/185734":http://gist.github.com/185734
 # Eventually, my build is successful (of course), the Integrity feed is updated, and the script sees this and sends me a little Growl note to let me know: !{margin: .5em;}/images/integrity-growl-watcher.png(Integrity growl notification)!
 # It doesn't go forever -- it times out eventually, so if your build totally fails with no warning, it will let you know.
 
-Setup should be pretty easy -- just make sure you've got all the gems installed.
+Setup should be pretty easy -- just make sure you've got all the gems installed. I thought about packing it up as a gem but it seems too small for that.
 
 Let me know (contact info at "whatcould":http://whatcould.com/) if you fork and fix anything, I'll add your changes to my version.
