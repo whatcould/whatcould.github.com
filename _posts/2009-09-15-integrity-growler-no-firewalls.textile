@@ -7,7 +7,7 @@ h1. {{ page.title }}
 
 p(meta). 15 September 2009
 
-h2. Background
+h3. Background
 
 * "Integrity":http://integrityapp.com/ is a continuous integration server written in Ruby, on Sinatra.
 * "Growl":http://growl.info is a little program for OSX that sends you little notes. Like those little bubbles back in Windows-land, but less annoying, and prettier.
