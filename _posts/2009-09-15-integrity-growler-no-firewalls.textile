@@ -1,0 +1,37 @@
+---
+layout: post
+title: Integrity Growl Watcher
+---
+
+h1. {{ page.title }}
+
+p(meta). 15 September 2009
+
+h2. Background
+
+* "Integrity":http://integrityapp.com/ is a continuous integration server written in Ruby, on Sinatra.
+* "Growl":http://growl.info is a little program for OSX that sends you little notes. Like those little bubbles back in Windows-land, but less annoying, and prettier.
+
+If you don't know what these two things are or why you'd want them to work together, you won't get much from this post.
+
+h2. Growl notifier for remote Integrity server
+
+I wanted to use a Growl notifier, so when I did a "git push" I didn't have to reload the integrity page to see if I'd broken something. David Calavera has a nice little "growl notifier":http://github.com/calavera/integrity-growl, but it assumes your Integrity server is on the same network as your local box. I wasn't excited about figuring out how to poke a hole in my firewall just for Growl, and I'm often working remotely.
+
+So I hacked up a little script to pro-actively ping my Integrity server every time I push to my origin/master. 
+
+h3. The details
+
+Here's the script: "http://gist.github.com/185734":http://gist.github.com/185734. This is how it works:
+
+# It's an executable ruby script (I put it at /usr/local/src/integrity-growl-watcher).
+# I run it just after a @git push@. (I've got an alias, _git push integrity growl_: @alias gpig="git push origin master && integrity-growl-watcher"@).
+# I've got an .integrity file in the root of my git project that sets the feed URL (see gist).
+# integrity-growl-watcher reads that file and starts checking my Integrity feed every 10 seconds. The script assumes you're running it from the root of your git project, and fetches the most recent commit from there. It does assume you'll be building the most recent commit.
+# My @git push@ of course has a post-receive hook to trigger my Integrity build.
+# Eventually, my build is successful (of course), the Integrity feed is updated, and the script sees this and sends me a little Growl note to let me know: !{margin: .5em;}/images/integrity-growl-watcher.png(Integrity growl notification)!
+# It doesn't go forever -- it times out eventually, so if your build totally fails with no warning, it will let you know.
+
+Setup should be pretty easy -- just make sure you've got all the gems installed.
+
+Let me know (contact info at "whatcould":http://whatcould.com/) if you fork and fix anything, I'll add your changes to my version.
