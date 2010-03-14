@@ -1,0 +1,22 @@
+---
+layout: post
+title: "should_have_db_columns: Really, Shoulda?"
+---
+
+h1. {{ page.title }}
+
+p(meta). 14 March 2010
+
+<blockquote style="font-size: 1.7em">
+{% highlight ruby %}
+should_have_db_columns :title, :url, :summary, :published_at
+{% endhighlight %}
+
+<p style="font-size: 12px">(a  "Shoulda":http://dev.thoughtbot.com/shoulda/classes/Shoulda/ActiveRecord/Macros.html#M000054) helper</p>
+</blockquote>
+
+Just boggles the mind, really, how anyone could write a test suite that wouldn't fail somewhere along the line if they *left out some database columns*. If your tests are that bad, maybe ya shoulda written better tests to start with. You know, instead of adding a one-liner to see if you actually added the column.
+
+Or, how about a metaphor. Let's say you're testing a car. If you like @should_have_db_columns@, you'll *love* @should_have_all_four_wheels@. Though some would say: even without that test, you'd eventually realize a wheel was gone.
+
+

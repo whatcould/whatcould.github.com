@@ -123,6 +123,11 @@ margin-top: .5em;
 ol.quick li {
 margin-top: .1em!important;
 }
+#post p strong {
+font-weight: 800;
+color: #500;
+}
+
 /* footer
 =========== */
 
