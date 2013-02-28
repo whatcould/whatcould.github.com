@@ -9,12 +9,12 @@ p(meta). 28 February 2013
 
 I was adding Twitter's new "typeahead":https://github.com/twitter/typeahead.js autocomplete to a project that was already using "underscore.js":http://underscorejs.org/ templates. Instead of adding another template engine, I wrote this quick wrapper. (This is rendered Coffeescript.) Posting in case anyone else has the same problem.
 
-Just set the template engine to @_.templateTypeaheadCompatable@.
+Just set the template engine to @_.templateTypeaheadCompatible@.
 
 <blockquote style="font-size: 1.6em">
 {% highlight javascript %}
 
-_.templateTypeaheadCompatable = {
+_.templateTypeaheadCompatible = {
   compile: function(str) {
     return new _.templateTypeaheadCompiled(str);
   }
