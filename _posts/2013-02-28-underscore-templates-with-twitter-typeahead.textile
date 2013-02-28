@@ -1,0 +1,37 @@
+---
+layout: post
+title: "Using underscore.js templates with Twitter Typeahead"
+---
+
+h1. {{ page.title }}
+
+p(meta). 28 February 2013
+
+I was adding Twitter's new "typeahead":https://github.com/twitter/typeahead.js autocomplete to a project that was already using "underscore.js":http://underscorejs.org/ templates. Instead of adding another template engine, I wrote this quick wrapper. (This is rendered Coffeescript.) Posting in case anyone else has the same problem.
+
+Just set the template engine to @_.templateTypeaheadCompatable@.
+
+<blockquote style="font-size: 1.7em">
+{% highlight js %}
+
+_.templateTypeaheadCompatable = {
+  compile: function(str) {
+    return new _.templateTypeaheadCompiled(str);
+  }
+}
+_.templateTypeaheadCompiled = (function() {
+  function templateTypeaheadCompiled(str) {
+    this.compiledTemplate = _.template(str);
+  }
+
+  templateTypeaheadCompiled.prototype.render = function(context) {
+    return this.compiledTemplate(context);
+  };
+
+  return templateTypeaheadCompiled;
+})();
+
+{% endhighlight %}
+</blockquote>
+
+
