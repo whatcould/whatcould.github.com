@@ -11,8 +11,8 @@ I was adding Twitter's new "typeahead":https://github.com/twitter/typeahead.js a
 
 Just set the template engine to @_.templateTypeaheadCompatable@.
 
-<blockquote style="font-size: 1.7em">
-{% highlight js %}
+<blockquote style="font-size: 1.6em">
+{% highlight javascript %}
 
 _.templateTypeaheadCompatable = {
   compile: function(str) {
